@@ -15,7 +15,9 @@ class CustomUserManager(BaseUserManager):
         if not username:
             raise ValueError(_('Users must have a username'))
         if not first_name:
-            raise ValueError(_('Users must have a firstname'))
+            raise ValueError(_('Users must have a first name'))
+        if not last_name:
+            raise ValueError(_('Users must have a last name'))
         if email:
             email = self.normalize_email(email)
             self.email_validator(email)
@@ -32,7 +34,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_superuser(self, username, first_name, last_name, email, password, **extra_fields):
@@ -51,5 +53,5 @@ class CustomUserManager(BaseUserManager):
         else:
             raise ValueError(_("Admin Account: An email address is required"))
         user = self.create_user(username, first_name, last_name, email, password, **extra_fields)
-        user.save(self._db)
+        user.save()
         return user
