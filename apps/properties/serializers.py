@@ -17,7 +17,7 @@ class PropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = Property
         fields = [
-            "id",
+            "uuid",
             "user",
             "profile_photo",
             "title",
