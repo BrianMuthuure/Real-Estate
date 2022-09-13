@@ -1,15 +1,16 @@
 import logging
 
 from django.core.mail import send_mail
-
-from real_estate.settings.development import DEFAULT_FROM_EMAIL
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from.models import Enquiry
+from real_estate.settings.development import DEFAULT_FROM_EMAIL
 
-@api_view(['POST'])
+from .models import Enquiry
+
+
+@api_view(["POST"])
 @permission_classes([permissions.AllowAny])
 def send_enquiry_email(request):
     data = request.data
@@ -27,18 +28,12 @@ def send_enquiry_email(request):
         enquiry.save()
 
         return Response(
-            {
-                "success": True,
-                "message": "Your Enquiry was successfully submitted"
-            },
-            status=status.HTTP_200_OK
+            {"success": True, "message": "Your Enquiry was successfully submitted"},
+            status=status.HTTP_200_OK,
         )
     except Exception as error:
         logging.info(error)
         return Response(
-            {
-                "success": False,
-                "message": "Enquiry was not sent"
-            },
-            status=status.HTTP_400_BAD_REQUEST
+            {"success": False, "message": "Enquiry was not sent"},
+            status=status.HTTP_400_BAD_REQUEST,
         )

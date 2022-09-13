@@ -73,9 +73,11 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
             "is_seller",
             "is_agent",
         ]
+
     """
     Allows us to change the serialization output
     """
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if instance.top_agent:

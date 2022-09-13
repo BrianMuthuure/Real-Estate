@@ -11,12 +11,12 @@ DOMAIN = env("DOMAIN")
 SITE_NAME = "Real Estate"
 
 DATABASES = {
-    'default': {
-        'ENGINE': env("POSTGRES_ENGINE"),
-        'NAME': env("DATABASE_NAME"),
-        'USER': env("DATABASE_USER"),
-        'PASSWORD': env("DATABASE_PASSWORD"),
-        'HOST': env("DATABASE_HOST"),
-        'PORT': env("DATABASE_PORT")
+    "default": {
+        "ENGINE": env("POSTGRES_ENGINE"),
+        "NAME": env("DATABASE_NAME"),
+        "USER": env("DATABASE_USER"),
+        "PASSWORD": env("DATABASE_PASSWORD"),
+        "HOST": env("DATABASE_HOST"),
+        "PORT": env("DATABASE_PORT"),
     }
 }

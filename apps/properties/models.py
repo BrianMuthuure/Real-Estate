@@ -8,6 +8,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
+
 from apps.common.models import TimeStampedUUIDModel
 
 User = get_user_model()
@@ -40,7 +41,7 @@ class Property(TimeStampedUUIDModel):
         User,
         verbose_name=_("Agent, Seller or Buyer"),
         related_name="agent_buyer",
-        on_delete=models.DO_NOTHING
+        on_delete=models.DO_NOTHING,
     )
     title = models.CharField(verbose_name=_("Property Title"), max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
@@ -48,35 +49,27 @@ class Property(TimeStampedUUIDModel):
         verbose_name=_("Property Reference Code"),
         max_length=255,
         unique=True,
-        blank=True
+        blank=True,
     )
     description = models.TextField(
-        verbose_name=_("Description"),
-        default="Update me please"
+        verbose_name=_("Description"), default="Update me please"
     )
     country = CountryField(
         verbose_name=_("Country"),
         default="KE",
         blank_label="(Select Country)",
     )
-    city = models.CharField(
-        verbose_name=_("City"),
-        max_length=150,
-        default="Nairobi"
-    )
+    city = models.CharField(verbose_name=_("City"), max_length=150, default="Nairobi")
     postal_code = models.CharField(
-        verbose_name=_("Postal Code"),
-        max_length=100,
-        default="1568"
+        verbose_name=_("Postal Code"), max_length=100, default="1568"
     )
     street_address = models.CharField(
-        verbose_name=_("Street Address"),
-        max_length=150, default="KG8 Avenue"
+        verbose_name=_("Street Address"), max_length=150, default="KG8 Avenue"
     )
     property_number = models.IntegerField(
         verbose_name=_("Property Number"),
         validators=[MinValueValidator(1)],
-        default=112
+        default=112,
     )
     price = models.DecimalField(
         verbose_name=_("Price"), max_digits=8, decimal_places=2, default=0.0
