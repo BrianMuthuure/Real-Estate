@@ -43,5 +43,5 @@ RUN chmod +x /start
 # RUN sed -i 's/\r$//g' /start-flower
 # RUN chmod +x /start-flower
 
-
+EXPOSE 8000
 ENTRYPOINT [ "/entrypoint"]
